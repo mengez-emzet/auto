@@ -1049,3 +1049,85 @@ h3 { font-weight: 600; font-size: 1rem; }
 /* Marquee: straight band attached directly under the hero, no gap */
 .marquee { transform: none; margin: 0; position: relative; z-index: 3; }
 @media (max-width: 980px) { .marquee { margin: 0; } }
+
+/* ===== Transparent logo: no black box. Light theme shows the dark lettered version ===== */
+.brandmark.hasimg { background: transparent; padding: 0; border-radius: 0; transform: none; overflow: visible; }
+.brandmark.hasimg .brandlogo { height: 38px; width: auto; max-width: none; }
+.brandlogo.logol { display: none; }
+[data-theme="light"] .brandlogo.logol { display: block; }
+[data-theme="light"] .brandlogo.logod { display: none; }
+.brand:hover .brandlogo { transform: scale(1.05) rotate(0deg); }
+@media (max-width: 600px) {
+  .brandmark.hasimg { padding: 0; }
+  .brandmark.hasimg .brandlogo { height: 30px; }
+}
+/* Page loader: white silhouette of the logo on the red cover */
+.wipemark.hasimg { background: transparent; padding: 0; border-radius: 0; transform: none; animation: none; }
+.wipemark.hasimg .wipelogo { height: auto; width: min(300px, 62vw); max-width: none; filter: brightness(0) invert(1); animation: markpulse 0.7s ease-in-out infinite alternate; }
+.footmark.hasimg { background: transparent; }
+.footlogo img { height: 36px; width: auto; max-width: none; }
+
+/* ===== Services modal with flyer picture ===== */
+.modalbox.svcbox { width: min(1000px, 100%); display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 28px; padding: 30px; align-items: start; }
+.modalbox.svcbox.noimg { grid-template-columns: minmax(0, 1fr); width: min(640px, 100%); }
+.svcfig { position: sticky; top: 0; min-width: 0; }
+.svcpic { background: #0a0a0a; border-radius: 12px; max-height: 76vh; overflow: auto; border: 1px solid var(--line); }
+.svcpic img { width: 100%; height: auto; display: block; }
+.svcthumbs { display: flex; gap: 8px; margin-top: 10px; }
+.svcthumbs[hidden] { display: none; }
+.svcthumb { width: 62px; height: 62px; padding: 0; border: 2px solid var(--line); border-radius: 10px; overflow: hidden; background: #0a0a0a; transition: border-color 0.3s, transform 0.3s var(--ease); }
+.svcthumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.svcthumb.on, .svcthumb:hover { border-color: var(--red); transform: translateY(-2px); }
+.svcinfo { min-width: 0; }
+.svcinfo h3 { padding-right: 40px; }
+.svcinfo .pmtag { color: var(--red); font-weight: 700; margin-top: 6px; }
+.pmfeat.cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; }
+.svcchips { margin-bottom: 6px; }
+.svcchips span { font-size: 0.8rem; padding: 4px 11px; border-radius: 999px; }
+.svcinfo .modalbtns { margin-top: 18px; }
+@media (max-width: 980px) {
+  .modalbox.svcbox { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 26px 18px 20px; }
+  .svcfig { position: static; }
+  .svcpic { max-height: 300px; }
+}
+@media (max-width: 520px) { .pmfeat.cols { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===== Brand chips, support and body kit style grids ===== */
+.brandbox { margin-top: 34px; }
+.brandrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.brandrow span { padding: 8px 16px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; font-family: "Rajdhani", sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.9rem; transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--ease); }
+.brandrow span:hover { background: var(--red); border-color: var(--red); color: #ffffff; transform: translateY(-3px); }
+.brandrow.hl { margin: 0 0 30px; }
+.brandrow.hl span { border-color: var(--red); }
+.brandrow.assure { margin-top: 22px; }
+.brandrow.assure span { background: var(--red); border-color: var(--red); color: #ffffff; }
+.stylegrid { margin-bottom: 44px; }
+.stylesplit { align-items: start; }
+.subh { margin: 6px 0 18px; font-size: 1.3rem; }
+.whylist { max-width: 900px; }
+#styles .rightcol .figure img { max-height: none; width: 100%; height: auto; object-fit: contain; background: #0a0a0a; }
+#styles .rightcol { position: sticky; top: 90px; }
+@media (max-width: 980px) { #styles .rightcol { position: static; } #styles .rightcol .figure img { max-height: none; } }
+
+/* OLD brand marquee styles (drawn SVG logos), kept for reference
+.brandmarquee { overflow: hidden; margin-top: 14px; padding: 6px 0; }
+.brandtrack { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+.brandmarquee:hover .brandtrack { animation-play-state: paused; }
+.bmset { display: flex; gap: 16px; padding-right: 16px; }
+.bm { display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; white-space: nowrap; transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease); }
+.bm svg { width: 34px; height: 34px; flex: none; }
+.bm b { font-family: "Rajdhani", "Arial Narrow", sans-serif; font-size: 1.05rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.bm:hover { border-color: var(--red); color: var(--red); transform: translateY(-4px); }
+@media (max-width: 600px) { .bm { padding: 10px 18px; gap: 10px; } .bm svg { width: 26px; height: 26px; } .bm b { font-size: 0.95rem; } }
+*/
+
+/* Compatible brands: scrolling strip with real logo pictures (images/brands) */
+.brandlogos { overflow: hidden; margin-top: 14px; padding: 6px 0; }
+.bltrack { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+.brandlogos:hover .bltrack { animation-play-state: paused; }
+.blset { display: flex; gap: 16px; padding-right: 16px; }
+.bl { display: inline-flex; align-items: center; gap: 14px; padding: 12px 26px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; white-space: nowrap; transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease); }
+.bl img { width: 44px; height: 44px; object-fit: contain; flex: none; }
+.bl b { font-family: "Rajdhani", "Arial Narrow", sans-serif; font-size: 1.05rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.bl:hover { border-color: var(--red); color: var(--red); transform: translateY(-4px); }
+@media (max-width: 600px) { .bl { padding: 9px 18px; gap: 10px; } .bl img { width: 34px; height: 34px; } .bl b { font-size: 0.95rem; } }

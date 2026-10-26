@@ -254,7 +254,7 @@
 
     var typed = $("#typed");
     if (typed) {
-      var words = ["body kits", "paint and respray", "car wraps", "mag wheels", "detailing", "interior refresh"];
+      var words = ["body kits", "paint and respray", "car wraps", "mag wheels", "detailing", "interior refresh", "bucket seats", "engine upgrades", "car security", "dash cameras"];
       var w = 0, ch = 0, del = false;
       {
         (function tick() {
@@ -285,27 +285,157 @@
     });
   });
 
+  /* Service details. Each entry: tag line, pictures, sections and an optional extra link.
+     Section kinds: "c" chips, "g" short checklist, "l" list with a second line [title, note]. */
+  var BRANDS = ["BMW", "Mercedes Benz", "Audi", "Toyota", "Lexus", "Volkswagen", "Nissan", "Honda", "Ford"];
   var details = {
-    "Car Body Kits and Pimping": ["Exterior styling and personalization", "A distinctive, upgraded look for your vehicle", "Kits in PP, ABS, FRP or carbon fiber, see the Body Kits page"],
-    "Detailing": ["Vehicle cleaning and finish focused care", "Refreshes exterior and interior surfaces", "Brings back the look of your vehicle"],
-    "Panel Beating and Respray": ["Bodywork repair", "Repainting to restore vehicle panels", "Improves the overall finish"],
-    "Car Wrapping": ["Wrap options to change your car's appearance", "A way to personalize the look of your vehicle", "Ask us about the options available"],
-    "Interior Rejuvenation": ["Refresh for cabin surfaces and trim", "Improves the look and feel of the interior", "Careful attention to the finish"],
-    "Mag Wheels": ["Wheel styling options", "Complements your vehicle's overall appearance", "Helps shape the stance of the car"]
+    "Car Body Kits and Pimping": {
+      tag: "Custom looks, premium quality, perfect fitment",
+      imgs: ["images/services/body-kits.jpg"],
+      link: ["bodykits.html", "Materials and fitment"],
+      secs: [
+        ["Why choose our kits", "g", ["Premium quality", "Professional fitment", "Wide range of styles", "For all vehicle brands", "Durable and long lasting"]],
+        ["Kit styles", "c", ["Front bumpers", "Rear bumpers", "Side skirts", "Spoilers and wings", "Fender kits", "Diffusers", "Grilles", "Full body kits"]],
+        ["Materials", "c", ["PP", "ABS", "FRP", "Carbon Fiber"]],
+        ["Installation services", "g", ["Professional fitment", "Precise alignment", "Clean finishing", "Custom modifications", "Painting available"]],
+        ["Kits for", "c", ["BMW", "Mercedes Benz", "Toyota", "Lexus", "Honda"]],
+        ["Also available", "g", ["Supply and fitment available", "Custom designs on request", "Quality products and professional service"]]
+      ]
+    },
+    "Detailing": {
+      tag: "Clean, protect, restore, enhance",
+      imgs: ["images/services/detailing.jpg"],
+      link: ["products.html?group=care", "Shop car care products"],
+      secs: [
+        ["Why choose AutoHub", "g", ["Premium products", "Professional techniques", "Longer protection", "Showroom finish", "Suitable for all vehicles"]],
+        ["Exterior wash and detail", "g", ["Snow foam wash", "Hand wash", "Wheel and tyre cleaning", "Tar and bug removal", "Drying and finishing"]],
+        ["Paint correction", "g", ["Swirl and scratch removal", "Machine polishing", "Paint restoration", "Enhanced gloss", "Showroom finish"]],
+        ["Ceramic coating and paint protection", "g", ["Long lasting protection", "UV and chemical resistance", "Hydrophobic effect", "Enhanced shine", "Easier maintenance"]],
+        ["Interior detailing", "g", ["Deep vacuuming", "Leather cleaning and conditioning", "Dashboard and trim care", "Carpet and seat shampoo", "Odour removal"]],
+        ["Engine bay detailing", "g", ["Degreasing and cleaning", "Steam cleaning", "Plastic and rubber care", "Protection and finishing", "Showroom look"]],
+        ["What you get", "g", ["Protects your investment", "Restores original look", "Enhances resale value", "Long lasting results"]]
+      ]
+    },
+    "Panel Beating and Respray": {
+      tag: "Accident damage? We bring your car back to life",
+      imgs: ["images/services/panel-beating.jpg"],
+      secs: [
+        ["Repairs we handle", "c", ["Accident repairs", "Dent removal", "Spray painting", "Frame straightening", "Bumper repairs"]],
+        ["Our panel beating services", "g", ["Accident damage repairs", "Dent removal (minor and major)", "Panel beating and reshaping", "Spray painting (factory finish)", "Bumper repairs and replacement", "Scratch repairs", "Frame straightening", "Chassis repairs", "Rust removal and restoration", "Full body respray", "Insurance assessments", "Custom body work and modifications"]],
+        ["Before and after work", "g", ["Accident damage repair", "Dent removal and panel repair", "Scratch and dent repairs", "Bumper repairs and replacements"]],
+        ["Paint booth", "l", [["Factory quality finish", "Repainting done in a dedicated paint booth"]]],
+        ["Our process", "l", [["Assessment", "Free inspection and quote"], ["Panel repair", "Professional technicians"], ["Painting", "Factory finish"], ["Quality check", "Perfect results"], ["Delivery", "Back on the road"]]],
+        ["Work with all vehicle brands", "c", BRANDS]
+      ]
+    },
+    "Car Wrapping": {
+      tag: "Transform, protect, personalise",
+      imgs: ["images/services/wrapping.jpg"],
+      secs: [
+        ["Why wrap with AutoHub", "g", ["Premium vinyl materials", "Wide range of colours", "Professional installation", "Paint protection", "Custom designs", "Residue free removal"]],
+        ["Finishes", "c", ["Matte", "Gloss", "Satin", "Chrome", "Textured"]],
+        ["Colour examples", "c", ["Matte black", "Gloss black", "Satin grey", "Pearl white", "Gloss red", "Metallic blue", "Chrome gold", "Carbon fibre"]],
+        ["Wrap styles", "l", [["Full wrap", "Colour change"], ["Custom wrap designs", "Branding and styling"], ["Premium finishes", "Matte, satin and chrome"]]],
+        ["Additional wrap services", "g", ["Roof wraps (gloss or matte)", "Mirror caps wrap", "Chrome delete", "Racing stripes and graphics", "Headlight and taillight tint", "Paint protection film (PPF)", "Commercial branding", "Full and partial wraps"]],
+        ["Installation", "l", [["Professional installation", "Flawless finish"], ["Attention to detail", "Premium results"], ["High quality vinyl", "Durable and long lasting"]]]
+      ]
+    },
+    "Interior Rejuvenation": {
+      tag: "A fresher look and feel inside",
+      imgs: [],
+      link: ["products.html?group=care", "Shop car care products"],
+      secs: [
+        ["What to expect", "g", ["Refresh for cabin surfaces and trim", "Improves the look and feel of the interior", "Careful attention to the finish"]],
+        ["Interior upgrades", "c", ["Bucket seats", "Steering wheels", "Interior detailing"]]
+      ]
+    },
+    "Mag Wheels": {
+      tag: "Style, performance, perfect fitment",
+      imgs: ["images/services/alloy-wheels.jpg"],
+      secs: [
+        ["Why choose our wheels", "g", ["Premium quality", "Wide variety", "Perfect fitment", "Suitable for multiple brands"]],
+        ["Alloy wheel styles", "l", [["BMW Style 1", "Black machine finish"], ["BMW Style 2", "Gloss black"], ["BMW Style 3", "Silver and white finish"], ["Style 4", "Silver finish"], ["Style 5", "Gloss black"], ["Style 6", "Gold and pearl finish"]]],
+        ["Compatible with multiple brands", "c", ["BMW", "Mercedes Benz", "Toyota", "Volkswagen", "Toyota Gazoo Racing"]],
+        ["Also available", "g", ["Supply and fitment available"]]
+      ]
+    },
+    "Bucket Seats": {
+      tag: "Style, comfort, performance",
+      imgs: ["images/services/bucket-seats.jpg"],
+      secs: [
+        ["Why choose our seats", "g", ["Premium quality", "Sporty designs", "Durable materials", "Perfect fitment", "Suitable for various vehicle models"]],
+        ["Sport series", "l", [["Sport Series 1", "Black and red"], ["Sport Series 2", "Black and grey"], ["Sport Series 3", "Red and black"], ["Sport Series 4", "All black"], ["Sport Series 5", "Black and blue"], ["Sport Series 6", "Black and white"], ["Sport Series 7", "Black Alcantara and red"], ["Sport Series 8", "Black and yellow"]]],
+        ["Suitable for multiple brands and models", "c", ["BMW", "Mercedes Benz", "Toyota", "Volkswagen", "Toyota Gazoo Racing"]],
+        ["Also available", "g", ["Supply and fitment available", "Custom designs on request", "Professional installation"]]
+      ]
+    },
+    "Steering Wheels": {
+      tag: "Transform your drive: luxury, sport, performance",
+      imgs: ["images/services/steering-wheels.jpg"],
+      secs: [
+        ["Why choose our steering wheels", "g", ["Premium quality", "Custom designs", "Perfect fitment", "Enhanced driving experience"]],
+        ["Styles shown", "c", ["Volkswagen", "Mercedes Benz AMG", "BMW M", "Toyota GR", "BMW M Performance"]],
+        ["What is on offer", "l", [["Premium materials", "Alcantara, leather and carbon fibre"], ["Custom styles", "Various designs and colours"], ["Professional installation", "Perfect fitment guaranteed"], ["Compatible with multiple brands", "VW, Mercedes Benz, BMW, Toyota and more"]]]
+      ]
+    },
+    "Engine Enhancement": {
+      tag: "More power, better efficiency, smoother drive",
+      imgs: ["images/services/engine.jpg"],
+      secs: [
+        ["What we improve", "c", ["Performance upgrade", "Fuel efficiency improvement", "Turbo upgrades", "ECU remapping", "Engine tuning", "Engine rebuilds", "Cooling system upgrades"]],
+        ["Our engine enhancement services", "l", [["Turbo kits", "Install and upgrade"], ["ECU remapping", "More power and economy"], ["Air intake systems", "Better airflow"], ["Exhaust systems", "Enhanced sound and performance"], ["Engine rebuilds", "Restore peak performance"], ["Intercoolers", "Lower temps, higher power"], ["Cooling system upgrades", "Better reliability"], ["Performance servicing", "Keep your engine in top shape"]]],
+        ["Benefits", "g", ["Increased horsepower and torque", "Better fuel efficiency", "Smoother acceleration", "Improved engine reliability", "Custom solutions for your vehicle", "Suitable for daily drive and performance builds"]],
+        ["Compatible with multiple brands", "c", ["BMW", "Mercedes Benz", "Audi", "Toyota", "Volkswagen", "Lexus", "Nissan", "Honda"]]
+      ]
+    },
+    "Car Security Systems": {
+      tag: "Advanced protection for your vehicle, 24/7",
+      imgs: ["images/services/security.jpg"],
+      secs: [
+        ["Protection you get", "c", ["Theft protection", "Real time monitoring", "GPS tracking", "Remote control", "Alarm systems", "Mobile app access"]],
+        ["What we supply and fit", "l", [["Alarm systems", "Anti theft alarms with shock, motion and door sensors"], ["GPS trackers", "Track your vehicle in real time with live location, history and geo fencing"], ["Immobilisers", "Prevent unauthorised starting of your vehicle"], ["Central locking systems", "Remote control locking and unlocking for added convenience and security"], ["Reverse cameras", "Drive and park with confidence"], ["Dash cameras", "Record your journeys for safety and evidence"], ["Parking sensors", "Detect obstacles and prevent collisions"], ["Car key programming", "Spare keys, remote programming and key replacements"]]],
+        ["Control it from your phone", "g", ["Lock and unlock from your phone", "Live GPS tracking", "Geo fence alerts", "Alarm notifications", "Engine immobilisation", "Track vehicle history"]],
+        ["Why choose AutoHub", "g", ["Premium products", "Professional installation", "Suitable for all vehicle types", "Modern and reliable technology", "Expert technicians", "After sales support"]],
+        ["Compatible with all vehicle brands", "c", BRANDS]
+      ]
+    },
+    "Dash Cameras and Fleet Tracking": {
+      tag: "Smart fleet, safer driving",
+      imgs: ["images/services/dash-camera.jpg", "images/services/remote-4g.jpg"],
+      secs: [
+        ["4G dash camera features", "g", ["4G WiFi GPS optional", "1080P Full HD", "Built in 2CH, front and cabin", "TF storage, max 1TB", "App and web remote view", "Fleet management"]],
+        ["Remote monitoring, anytime, anywhere", "l", [["4G remote transmission", "Monitor your fleet remotely through a PC or mobile phone"]]],
+        ["Ideal for various vehicles", "c", ["Taxi", "Van", "Bus"]],
+        ["Monitoring tools", "g", ["Remote monitor", "GPS tracking", "Real time alerts", "Playback", "Data security"]]
+      ]
+    }
   };
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function buildBody(secs) {
+    return secs.map(function (sec) {
+      var head = '<p class="small pmlabel">' + esc(sec[0]) + '</p>';
+      if (sec[1] === "c") return head + '<div class="mats svcchips">' + sec[2].map(function (i) { return "<span>" + esc(i) + "</span>"; }).join("") + "</div>";
+      if (sec[1] === "g") return head + '<ul class="pmfeat cols">' + sec[2].map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>";
+      return head + '<ul class="pmfeat">' + sec[2].map(function (i) { return "<li><b>" + esc(i[0]) + "</b>" + (i[1] ? "<span>" + esc(i[1]) + "</span>" : "") + "</li>"; }).join("") + "</ul>";
+    }).join("");
+  }
   if (cards.length) {
     var modal = document.createElement("div");
     modal.className = "modal";
     modal.innerHTML = '<div class="modalbg" data-close="1"></div>' +
-      '<div class="modalbox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">' +
+      '<div class="modalbox svcbox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">' +
       '<button type="button" class="modalclose" data-close="1" aria-label="Close details">&times;</button>' +
-      '<h3 id="modalTitle"></h3><p class="modallead" id="modalLead"></p><ul id="modalList"></ul>' +
+      '<div class="svcfig" id="svcFig" hidden><div class="svcpic"><img id="svcImg" alt=""></div><div class="svcthumbs" id="svcThumbs"></div></div>' +
+      '<div class="svcinfo"><h3 id="modalTitle"></h3><p class="pmtag" id="modalTag"></p><p class="modallead" id="modalLead"></p>' +
+      '<div id="modalBody"></div>' +
       '<p class="small">Scope, materials, timelines and pricing are confirmed during consultation.</p>' +
       '<div class="modalbtns"><a class="btn btnred" id="modalGo" href="contact.html">Request this service</a>' +
       '<a class="btn btnghost" id="modalShop" href="products.html?group=care" hidden>Shop car care products</a>' +
-      '<button type="button" class="btn btnghost" data-close="1">Close</button></div></div>';
+      '<button type="button" class="btn btnghost" data-close="1">Close</button></div></div></div>';
     document.body.appendChild(modal);
     var lastFocus = null;
+    var svcImg = $("#svcImg"), svcFig = $("#svcFig"), svcThumbs = $("#svcThumbs");
+    var showPic = function (src, alt) { svcImg.src = src; svcImg.alt = alt; $(".svcpic", modal).scrollTop = 0; };
     var closeModal = function () {
       modal.classList.remove("open");
       document.body.classList.remove("locked");
@@ -313,14 +443,29 @@
     };
     var openModal = function (card) {
       var title = $("h3", card).textContent.trim();
+      var d = details[title] || { tag: "", imgs: [], secs: [] };
       $("#modalTitle").textContent = title;
+      var tag = $("#modalTag"); tag.textContent = d.tag || ""; tag.hidden = !d.tag;
       $("#modalLead").textContent = $("p", card).textContent.trim();
-      $("#modalList").innerHTML = (details[title] || []).map(function (t) { return "<li>" + t + "</li>"; }).join("");
+      $("#modalBody").innerHTML = buildBody(d.secs || []);
       $("#modalGo").setAttribute("href", "contact.html?service=" + encodeURIComponent(title));
-      $("#modalShop").hidden = !(title === "Detailing" || title === "Interior Rejuvenation");
+      var shop = $("#modalShop");
+      shop.hidden = !d.link;
+      if (d.link) { shop.setAttribute("href", d.link[0]); shop.textContent = d.link[1]; }
+      var imgs = d.imgs || [];
+      svcFig.hidden = !imgs.length;
+      modal.querySelector(".svcbox").classList.toggle("noimg", !imgs.length);
+      if (imgs.length) {
+        showPic(imgs[0], title + " flyer");
+        svcThumbs.hidden = imgs.length < 2;
+        svcThumbs.innerHTML = imgs.map(function (src, n) {
+          return '<button type="button" class="svcthumb' + (n === 0 ? " on" : "") + '" data-src="' + esc(src) + '" aria-label="Show picture ' + (n + 1) + '"><img src="' + esc(src) + '" alt=""></button>';
+        }).join("");
+      }
       lastFocus = document.activeElement;
       modal.classList.add("open");
       document.body.classList.add("locked");
+      $(".modalbox", modal).scrollTop = 0;
       setTimeout(function () { $(".modalclose", modal).focus(); }, 60);
     };
     cards.forEach(function (card) {
@@ -335,10 +480,17 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(card); }
       });
     });
-    modal.addEventListener("click", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-close")) closeModal(); });
+    modal.addEventListener("click", function (e) {
+      if (e.target.getAttribute && e.target.getAttribute("data-close")) { closeModal(); return; }
+      var th = e.target.closest ? e.target.closest(".svcthumb") : null;
+      if (th) {
+        $all(".svcthumb", modal).forEach(function (b) { b.classList.toggle("on", b === th); });
+        showPic(th.getAttribute("data-src"), $("#modalTitle").textContent + " flyer");
+      }
+    });
     modal.addEventListener("keydown", function (e) {
       if (e.key !== "Tab") return;
-      var f = $all("button, a[href]", modal);
+      var f = $all("button, a[href]", modal).filter(function (x) { return !x.hidden && x.offsetParent !== null; });
       var first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
